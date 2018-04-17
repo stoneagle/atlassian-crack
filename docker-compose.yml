@@ -1,0 +1,20 @@
+version: '2'
+services:
+  jira:
+    # environment:
+    #   - DEBUG=true
+    image: jira:7.4.1
+    container_name: jira-${DEV_USER}
+    # volumes:
+    #   - ./jira/init.sh:/exec/init.sh
+    ports:
+      - "${DEV_PORT}:8080"
+    networks:
+      - default
+    entrypoint: 
+      - /opt/atlassian/jira/bin/catalina.sh
+      - run 
+networks:
+  default:
+    external:
+      name: ${DEV_USER}
